@@ -1,0 +1,79 @@
+:root {
+   /* Ajustado para um tom escuro alinhado com o restante do tema */
+   --cor-fundo: #070913; 
+   --cor-principal: #0b0d20;
+   --cor-secundaria: #212333;
+   --cor-destaque: #22bbdd;
+   --cor-texto: #d7f9ff;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+   background-color: var(--cor-fundo);
+   color: var(--cor-texto);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+   padding: 20px;
+}
+
+.caixa-principal {
+   background-color: var(--cor-principal);
+   width: 100%;
+   max-width: 600px;
+   text-align: center;
+   padding: 30px;
+   border-radius: 15px;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Opcional: dá profundidade ao container */
+}
+
+h1 {
+   color: var(--cor-destaque);
+   margin-bottom: 20px;
+}
+
+.caixa-perguntas {
+   font-size: 1.2rem;
+   margin-bottom: 20px;
+}
+
+.caixa-alternativas {
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   margin-bottom: 20px;
+}
+
+button {
+   background-color: var(--cor-secundaria);
+   color: var(--cor-texto);
+   border: none;
+   border-radius: 15px;
+   padding: 15px;
+   font-size: 1rem;
+   cursor: pointer;
+   /* Transição suave para cor de fundo e texto */
+   transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+   background-color: var(--cor-destaque);
+   color: var(--cor-principal);
+}
+
+button:active {
+   transform: scale(0.98); /* Feedback visual leve ao clicar */
+}
+
+.caixa-resultado {
+   margin-top: 20px;
+   font-size: 1.1rem;
+   line-height: 1.6;
+}
