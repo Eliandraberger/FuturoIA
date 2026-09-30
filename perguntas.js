@@ -1,0 +1,58 @@
+import { aleatorio } from './aleatorio.js';
+import { perguntas } from './perguntas.js';
+
+const caixaPrincipal = document.querySelector(".caixa-principal");
+const caixaPerguntas = document.querySelector(".caixa-perguntas");
+const caixaAlternativas = document.querySelector(".caixa-alternativas");
+const caixaResultado = document.querySelector(".caixa-resultado");
+const textoResultado = document.querySelector(".texto-resultado");
+const botaoJogarNovamente = document.querySelector(".novamente-btn");
+
+let atual = 0;
+let perguntaAtual;
+let historiaFinal = "";
+
+function mostraPergunta() {
+  if (atual >= perguntas.length) {
+    mostraResultado();
+    return;
+  }
+  perguntaAtual = perguntas[atual];
+  caixaPerguntas.textContent = perguntaAtual.enunciado;
+  caixaAlternativas.textContent = "";
+  textoResultado.textContent = ""; // Limpa o texto de resultado enquanto joga
+  mostraAlternativas();
+}
+
+function mostraAlternativas() {
+  for (const alternativa of perguntaAtual.alternativas) {
+    const botaoAlternativa = document.createElement("button");
+    botaoAlternativa.textContent = alternativa.texto;
+    botaoAlternativa.addEventListener("click", () => respostaSelecionada(alternativa));
+    caixaAlternativas.appendChild(botaoAlternativa);
+  }
+}
+
+function respostaSelecionada(opcaoSelecionada) {
+  const afirmacoes = aleatorio(opcaoSelecionada.afirmacao);
+  historiaFinal += afirmacoes + " ";
+  atual++;
+  mostraPergunta();
+}
+
+function mostraResultado() {
+  caixaPerguntas.textContent = "Em 2049...";
+  textoResultado.textContent = historiaFinal.trim();
+  caixaAlternativas.textContent = "";
+}
+
+function reiniciarJogo() {
+  atual = 0;
+  historiaFinal = "";
+  mostraPergunta();
+}
+
+// O ouvinte de evento deve ser registrado apenas uma vez, sem os parênteses () na função
+botaoJogarNovamente.addEventListener("click", reiniciarJogo);
+
+mostraPergunta();
